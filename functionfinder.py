@@ -123,9 +123,9 @@ class FunctionFinder(GObject.Object, Gedit.ViewActivatable):
     if (path is None):
       return(False)
     # run the file through ctags
-    lines = subprocess.check_output(
+    output = subprocess.check_output(
       ('ctags', '-f', '-', '--fields=Kn', path))
-    lines = lines.split('\n')
+    lines = output.decode('utf-8').split('\n')
     for line in lines:
       # parse tag lines
       parts = line.split('\t')
